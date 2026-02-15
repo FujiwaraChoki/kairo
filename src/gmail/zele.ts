@@ -1,5 +1,5 @@
 import { execFileSync, execSync } from "node:child_process";
-import { dirname, resolve } from "node:path";
+import { resolve } from "node:path";
 import { readFileSync } from "node:fs";
 import logger from "../logger";
 
@@ -8,18 +8,20 @@ const log = logger.child({ module: "zele" });
 let cachedEntry: string | null = null;
 
 /**
- * Ensure zele is installed globally.
+ * Ensure zele is installed globally via npm.
  * Returns the path to the actual JS entry point (not the shell wrapper).
+ * Uses `npm root -g` so it always finds the npm-installed copy,
+ * even if Bun also has a global zele installation.
  */
 export function ensureZele(): string {
   if (cachedEntry) return cachedEntry;
 
   try {
-    // which zele -> /usr/lib/node_modules/zele/bin/zele (shell wrapper)
-    const binPath = execSync("which zele", { encoding: "utf-8" }).trim();
-    // Follow symlinks to the real file, then find package.json
-    const realBin = execSync(`realpath "${binPath}"`, { encoding: "utf-8" }).trim();
-    const pkgDir = resolve(dirname(realBin), "..");
+    const globalRoot = execSync("npm root -g", {
+      encoding: "utf-8",
+      timeout: 10_000,
+    }).trim();
+    const pkgDir = resolve(globalRoot, "zele");
     const pkg = JSON.parse(readFileSync(resolve(pkgDir, "package.json"), "utf-8"));
     const binField = typeof pkg.bin === "string" ? pkg.bin : pkg.bin?.zele;
 
@@ -27,9 +29,10 @@ export function ensureZele(): string {
 
     cachedEntry = resolve(pkgDir, binField);
     return cachedEntry;
-  } catch (err: any) {
-    if (err.message?.includes("Cannot find zele")) throw err;
-    throw new Error("zele is not installed. Run: npm install -g zele");
+  } catch {
+    throw new Error(
+      "zele is not installed via npm. Run: npm install -g zele"
+    );
   }
 }
 
@@ -41,7 +44,7 @@ export function runZele(args: string[], timeoutMs = 30_000): string {
   log.debug({ args }, "Running zele command");
 
   try {
-    const output = execFileSync("node", [bin, ...args], {
+    const output = execFileSync(process.execPath, [bin, ...args], {
       encoding: "utf-8",
       timeout: timeoutMs,
       env: { ...process.env, FORCE_COLOR: "0" },
