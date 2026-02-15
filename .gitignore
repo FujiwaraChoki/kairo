@@ -1,0 +1,27 @@
+node_modules/
+dist/
+
+# Environment & secrets
+.env
+
+# Runtime data
+data/kairo.db
+data/kairo.db-wal
+data/kairo.db-shm
+data/reminders.json
+data/notes.json
+data/spotify_tokens.json
+
+# WhatsApp auth
+auth_info_baileys/
+baileys_store.json
+.wwebjs_auth/
+.wwebjs_cache/
+
+# Editor & tooling
+.claude/
+.cursor/
+.playwright/
+.playwright-cli/
+.DS_Store
+*.log

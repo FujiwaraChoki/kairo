@@ -1,0 +1,502 @@
+[
+  {
+    "text": "The only way to do great work is to love what you do.",
+    "author": "Steve Jobs",
+    "category": "motivation"
+  },
+  {
+    "text": "It is not the strongest of the species that survives, nor the most intelligent, but the one most responsive to change.",
+    "author": "Charles Darwin",
+    "category": "science"
+  },
+  {
+    "text": "The unexamined life is not worth living.",
+    "author": "Socrates",
+    "category": "philosophy"
+  },
+  {
+    "text": "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
+    "author": "Albert Einstein",
+    "category": "creativity"
+  },
+  {
+    "text": "In three words I can sum up everything I've learned about life: it goes on.",
+    "author": "Robert Frost",
+    "category": "life"
+  },
+  {
+    "text": "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+    "author": "Winston Churchill",
+    "category": "success"
+  },
+  {
+    "text": "Outside of a dog, a book is man's best friend. Inside of a dog, it's too dark to read.",
+    "author": "Groucho Marx",
+    "category": "humor"
+  },
+  {
+    "text": "The best and most beautiful things in the world cannot be seen or even touched — they must be felt with the heart.",
+    "author": "Helen Keller",
+    "category": "love"
+  },
+  {
+    "text": "It does not matter how slowly you go as long as you do not stop.",
+    "author": "Confucius",
+    "category": "perseverance"
+  },
+  {
+    "text": "I think, therefore I am.",
+    "author": "Rene Descartes",
+    "category": "philosophy"
+  },
+  {
+    "text": "The mind is everything. What you think you become.",
+    "author": "Buddha",
+    "category": "wisdom"
+  },
+  {
+    "text": "Creativity is intelligence having fun.",
+    "author": "Albert Einstein",
+    "category": "creativity"
+  },
+  {
+    "text": "I have not failed. I've just found 10,000 ways that won't work.",
+    "author": "Thomas Edison",
+    "category": "perseverance"
+  },
+  {
+    "text": "The greatest glory in living lies not in never falling, but in rising every time we fall.",
+    "author": "Nelson Mandela",
+    "category": "motivation"
+  },
+  {
+    "text": "Life is what happens when you're busy making other plans.",
+    "author": "John Lennon",
+    "category": "life"
+  },
+  {
+    "text": "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.",
+    "author": "Albert Einstein",
+    "category": "humor"
+  },
+  {
+    "text": "The only true wisdom is in knowing you know nothing.",
+    "author": "Socrates",
+    "category": "wisdom"
+  },
+  {
+    "text": "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage.",
+    "author": "Lao Tzu",
+    "category": "love"
+  },
+  {
+    "text": "Success usually comes to those who are too busy to be looking for it.",
+    "author": "Henry David Thoreau",
+    "category": "success"
+  },
+  {
+    "text": "The important thing is not to stop questioning. Curiosity has its own reason for existing.",
+    "author": "Albert Einstein",
+    "category": "science"
+  },
+  {
+    "text": "You miss 100% of the shots you don't take.",
+    "author": "Wayne Gretzky",
+    "category": "motivation"
+  },
+  {
+    "text": "To live is the rarest thing in the world. Most people exist, that is all.",
+    "author": "Oscar Wilde",
+    "category": "life"
+  },
+  {
+    "text": "I can resist everything except temptation.",
+    "author": "Oscar Wilde",
+    "category": "humor"
+  },
+  {
+    "text": "Knowing yourself is the beginning of all wisdom.",
+    "author": "Aristotle",
+    "category": "wisdom"
+  },
+  {
+    "text": "Every artist was first an amateur.",
+    "author": "Ralph Waldo Emerson",
+    "category": "creativity"
+  },
+  {
+    "text": "Somewhere, something incredible is waiting to be known.",
+    "author": "Carl Sagan",
+    "category": "science"
+  },
+  {
+    "text": "He who has a why to live can bear almost any how.",
+    "author": "Friedrich Nietzsche",
+    "category": "philosophy"
+  },
+  {
+    "text": "It always seems impossible until it's done.",
+    "author": "Nelson Mandela",
+    "category": "perseverance"
+  },
+  {
+    "text": "Where there is love there is life.",
+    "author": "Mahatma Gandhi",
+    "category": "love"
+  },
+  {
+    "text": "The secret of getting ahead is getting started.",
+    "author": "Mark Twain",
+    "category": "success"
+  },
+  {
+    "text": "Believe you can and you're halfway there.",
+    "author": "Theodore Roosevelt",
+    "category": "motivation"
+  },
+  {
+    "text": "The purpose of life is not to be happy. It is to be useful, to be honorable, to be compassionate.",
+    "author": "Ralph Waldo Emerson",
+    "category": "life"
+  },
+  {
+    "text": "I'm not afraid of death; I just don't want to be there when it happens.",
+    "author": "Woody Allen",
+    "category": "humor"
+  },
+  {
+    "text": "The only thing I know is that I know nothing.",
+    "author": "Socrates",
+    "category": "philosophy"
+  },
+  {
+    "text": "Turn your wounds into wisdom.",
+    "author": "Oprah Winfrey",
+    "category": "wisdom"
+  },
+  {
+    "text": "The chief enemy of creativity is good sense.",
+    "author": "Pablo Picasso",
+    "category": "creativity"
+  },
+  {
+    "text": "Nothing in life is to be feared, it is only to be understood.",
+    "author": "Marie Curie",
+    "category": "science"
+  },
+  {
+    "text": "Our greatest weakness lies in giving up. The most certain way to succeed is always to try just one more time.",
+    "author": "Thomas Edison",
+    "category": "perseverance"
+  },
+  {
+    "text": "You know you're in love when you can't fall asleep because reality is finally better than your dreams.",
+    "author": "Dr. Seuss",
+    "category": "love"
+  },
+  {
+    "text": "Don't be afraid to give up the good to go for the great.",
+    "author": "John D. Rockefeller",
+    "category": "success"
+  },
+  {
+    "text": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+    "author": "Ralph Waldo Emerson",
+    "category": "motivation"
+  },
+  {
+    "text": "Get your facts first, then you can distort them as you please.",
+    "author": "Mark Twain",
+    "category": "humor"
+  },
+  {
+    "text": "The journey of a thousand miles begins with a single step.",
+    "author": "Lao Tzu",
+    "category": "wisdom"
+  },
+  {
+    "text": "Life is really simple, but we insist on making it complicated.",
+    "author": "Confucius",
+    "category": "life"
+  },
+  {
+    "text": "Have no fear of perfection — you'll never reach it.",
+    "author": "Salvador Dali",
+    "category": "creativity"
+  },
+  {
+    "text": "Science is a way of thinking much more than it is a body of knowledge.",
+    "author": "Carl Sagan",
+    "category": "science"
+  },
+  {
+    "text": "Man is the only creature who refuses to be what he is.",
+    "author": "Albert Camus",
+    "category": "philosophy"
+  },
+  {
+    "text": "Perseverance is not a long race; it is many short races one after the other.",
+    "author": "Walter Elliot",
+    "category": "perseverance"
+  },
+  {
+    "text": "The best thing to hold onto in life is each other.",
+    "author": "Audrey Hepburn",
+    "category": "love"
+  },
+  {
+    "text": "I find that the harder I work, the more luck I seem to have.",
+    "author": "Thomas Jefferson",
+    "category": "success"
+  },
+  {
+    "text": "Act as if what you do makes a difference. It does.",
+    "author": "William James",
+    "category": "motivation"
+  },
+  {
+    "text": "If you tell the truth, you don't have to remember anything.",
+    "author": "Mark Twain",
+    "category": "wisdom"
+  },
+  {
+    "text": "In the end, it's not the years in your life that count. It's the life in your years.",
+    "author": "Abraham Lincoln",
+    "category": "life"
+  },
+  {
+    "text": "Behind every great man is a woman rolling her eyes.",
+    "author": "Jim Carrey",
+    "category": "humor"
+  },
+  {
+    "text": "The function of education is to teach one to think intensively and to think critically.",
+    "author": "Martin Luther King Jr.",
+    "category": "wisdom"
+  },
+  {
+    "text": "Creativity takes courage.",
+    "author": "Henri Matisse",
+    "category": "creativity"
+  },
+  {
+    "text": "The good thing about science is that it's true whether or not you believe in it.",
+    "author": "Neil deGrasse Tyson",
+    "category": "science"
+  },
+  {
+    "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+    "author": "Will Durant",
+    "category": "philosophy"
+  },
+  {
+    "text": "Fall seven times, stand up eight.",
+    "author": "Japanese Proverb",
+    "category": "perseverance"
+  },
+  {
+    "text": "Love is composed of a single soul inhabiting two bodies.",
+    "author": "Aristotle",
+    "category": "love"
+  },
+  {
+    "text": "The way to get started is to quit talking and begin doing.",
+    "author": "Walt Disney",
+    "category": "success"
+  },
+  {
+    "text": "Whether you think you can or you think you can't, you're right.",
+    "author": "Henry Ford",
+    "category": "motivation"
+  },
+  {
+    "text": "Do not dwell in the past, do not dream of the future, concentrate the mind on the present moment.",
+    "author": "Buddha",
+    "category": "wisdom"
+  },
+  {
+    "text": "Not all those who wander are lost.",
+    "author": "J.R.R. Tolkien",
+    "category": "life"
+  },
+  {
+    "text": "A day without laughter is a day wasted.",
+    "author": "Charlie Chaplin",
+    "category": "humor"
+  },
+  {
+    "text": "Happiness is not something ready made. It comes from your own actions.",
+    "author": "Dalai Lama",
+    "category": "philosophy"
+  },
+  {
+    "text": "You can't use up creativity. The more you use, the more you have.",
+    "author": "Maya Angelou",
+    "category": "creativity"
+  },
+  {
+    "text": "The saddest aspect of life right now is that science gathers knowledge faster than society gathers wisdom.",
+    "author": "Isaac Asimov",
+    "category": "science"
+  },
+  {
+    "text": "A river cuts through rock not because of its power, but because of its persistence.",
+    "author": "Jim Watkins",
+    "category": "perseverance"
+  },
+  {
+    "text": "To love and be loved is to feel the sun from both sides.",
+    "author": "David Viscott",
+    "category": "love"
+  },
+  {
+    "text": "Success is walking from failure to failure with no loss of enthusiasm.",
+    "author": "Winston Churchill",
+    "category": "success"
+  },
+  {
+    "text": "It is during our darkest moments that we must focus to see the light.",
+    "author": "Aristotle",
+    "category": "motivation"
+  },
+  {
+    "text": "The fool doth think he is wise, but the wise man knows himself to be a fool.",
+    "author": "William Shakespeare",
+    "category": "wisdom"
+  },
+  {
+    "text": "Life is either a daring adventure or nothing at all.",
+    "author": "Helen Keller",
+    "category": "life"
+  },
+  {
+    "text": "I used to think I was indecisive, but now I'm not so sure.",
+    "author": "Tommy Cooper",
+    "category": "humor"
+  },
+  {
+    "text": "One cannot step twice in the same river.",
+    "author": "Heraclitus",
+    "category": "philosophy"
+  },
+  {
+    "text": "Art is not what you see, but what you make others see.",
+    "author": "Edgar Degas",
+    "category": "creativity"
+  },
+  {
+    "text": "If I have seen further, it is by standing on the shoulders of giants.",
+    "author": "Isaac Newton",
+    "category": "science"
+  },
+  {
+    "text": "It's not that I'm so smart, it's just that I stay with problems longer.",
+    "author": "Albert Einstein",
+    "category": "perseverance"
+  },
+  {
+    "text": "The giving of love is an education in itself.",
+    "author": "Eleanor Roosevelt",
+    "category": "love"
+  },
+  {
+    "text": "Opportunities don't happen. You create them.",
+    "author": "Chris Grosser",
+    "category": "success"
+  },
+  {
+    "text": "Start where you are. Use what you have. Do what you can.",
+    "author": "Arthur Ashe",
+    "category": "motivation"
+  },
+  {
+    "text": "By three methods we may learn wisdom: first, by reflection, which is noblest; second, by imitation, which is easiest; and third, by experience, which is the bitterest.",
+    "author": "Confucius",
+    "category": "wisdom"
+  },
+  {
+    "text": "The purpose of our lives is to be happy.",
+    "author": "Dalai Lama",
+    "category": "life"
+  },
+  {
+    "text": "Light travels faster than sound. This is why some people appear bright until you hear them speak.",
+    "author": "Alan Dundes",
+    "category": "humor"
+  },
+  {
+    "text": "The life of man is of no greater importance to the universe than that of an oyster.",
+    "author": "David Hume",
+    "category": "philosophy"
+  },
+  {
+    "text": "To create one's own world takes courage.",
+    "author": "Georgia O'Keeffe",
+    "category": "creativity"
+  },
+  {
+    "text": "The most incomprehensible thing about the world is that it is comprehensible.",
+    "author": "Albert Einstein",
+    "category": "science"
+  },
+  {
+    "text": "Courage is not having the strength to go on; it is going on when you don't have the strength.",
+    "author": "Theodore Roosevelt",
+    "category": "perseverance"
+  },
+  {
+    "text": "We accept the love we think we deserve.",
+    "author": "Stephen Chbosky",
+    "category": "love"
+  },
+  {
+    "text": "It is better to fail in originality than to succeed in imitation.",
+    "author": "Herman Melville",
+    "category": "success"
+  },
+  {
+    "text": "Everything you've ever wanted is on the other side of fear.",
+    "author": "George Addair",
+    "category": "motivation"
+  },
+  {
+    "text": "The measure of intelligence is the ability to change.",
+    "author": "Albert Einstein",
+    "category": "wisdom"
+  },
+  {
+    "text": "You only live once, but if you do it right, once is enough.",
+    "author": "Mae West",
+    "category": "life"
+  },
+  {
+    "text": "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+    "author": "Anonymous",
+    "category": "humor"
+  },
+  {
+    "text": "Liberty consists in doing what one desires.",
+    "author": "John Stuart Mill",
+    "category": "philosophy"
+  },
+  {
+    "text": "The desire to create is one of the deepest yearnings of the human soul.",
+    "author": "Dieter F. Uchtdorf",
+    "category": "creativity"
+  },
+  {
+    "text": "Equipped with his five senses, man explores the universe around him and calls the adventure Science.",
+    "author": "Edwin Hubble",
+    "category": "science"
+  },
+  {
+    "text": "The oak fought the wind and was broken, the willow bent when it must and survived.",
+    "author": "Robert Jordan",
+    "category": "perseverance"
+  },
+  {
+    "text": "Love all, trust a few, do wrong to none.",
+    "author": "William Shakespeare",
+    "category": "love"
+  }
+]
