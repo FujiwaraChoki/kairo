@@ -154,15 +154,6 @@ done
 append_comment "Telegram"
 append_env "BOT_TOKEN=${BOT_TOKEN}"
 
-# Anthropic API key
-info "Get an API key from ${CYAN}https://console.anthropic.com/settings/keys${RESET}"
-ANTHROPIC_KEY=$(prompt_secret "Anthropic API key")
-while [ -z "$ANTHROPIC_KEY" ]; do
-  err "Anthropic API key is required"
-  ANTHROPIC_KEY=$(prompt_secret "Anthropic API key")
-done
-append_env "ANTHROPIC_API_KEY=${ANTHROPIC_KEY}"
-
 print ""
 divider
 print ""

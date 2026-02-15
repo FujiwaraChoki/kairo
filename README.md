@@ -61,7 +61,6 @@ All configuration is done through environment variables. See [`.env.example`](.e
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `BOT_TOKEN` | Yes | Telegram bot token |
-| `ANTHROPIC_API_KEY` | Yes | Claude API key |
 | `BOT_NAME` | No | Bot display name (default: Kairo) |
 | `MAX_CONTEXT_TOKENS` | No | Token budget for context (default: 16000) |
 | `ENABLE_GROUPS` | No | Respond in group chats (default: false) |
@@ -69,7 +68,7 @@ All configuration is done through environment variables. See [`.env.example`](.e
 | `NOTION_TOKEN` | No | Enables Notion integration |
 | `SPOTIFY_CLIENT_ID` | No | Enables Spotify integration |
 
-Integrations are optional — the bot works with just a Telegram token and Anthropic key. Enable more by adding the relevant API keys.
+Integrations are optional — the bot works with just a Telegram token. Enable more by adding the relevant API keys.
 
 ## Architecture
 
