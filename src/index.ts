@@ -238,7 +238,7 @@ async function askClaude(
         ...SPOTIFY_TOOL_NAMES,
         ...(notionMcpServer ? NOTION_TOOL_NAMES : []),
       ],
-      maxTurns: 10,
+      maxTurns: 50,
       mcpServers: {
         search: searchServer,
         whatsapp: whatsappMcpServer,
