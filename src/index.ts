@@ -6,7 +6,7 @@ import { writeFileSync, unlinkSync } from "node:fs";
 import { join } from "node:path";
 import { tmpdir } from "node:os";
 import Exa from "exa-js";
-import { connectWhatsApp, isConnected } from "./whatsapp/client";
+import { connectWhatsApp } from "./whatsapp/client";
 import { whatsappMcpServer, WHATSAPP_TOOL_NAMES } from "./whatsapp/tools";
 import { productivityMcpServer, PRODUCTIVITY_TOOL_NAMES } from "./productivity/tools";
 import { mediaMcpServer, MEDIA_TOOL_NAMES } from "./media/tools";
@@ -558,21 +558,23 @@ bot.on(message("text"), async (ctx) => {
 async function main() {
   initDatabase();
 
-  // Pre-install zele for Gmail (non-blocking)
+  // Check zele is available for Gmail
   try {
     ensureZele();
     log.info("zele CLI ready for Gmail integration");
   } catch (err) {
-    log.warn({ err }, "zele installation failed — Gmail tools will retry on first use");
+    log.warn({ err }, "zele not found — install with: npm install -g zele");
   }
 
-  log.info("Connecting to WhatsApp...");
-  await connectWhatsApp();
+  // WhatsApp is optional — don't block startup if it fails
+  connectWhatsApp()
+    .then(() => log.info("WhatsApp connected"))
+    .catch((err) => log.warn({ err }, "WhatsApp unavailable — bot will run without it"));
 
   startReminderScheduler();
 
   bot.launch();
-  log.info(`${BOT_NAME} is live on Telegram with WhatsApp integration!`);
+  log.info(`${BOT_NAME} is live on Telegram`);
 }
 
 main().catch((err) => {

@@ -1,9 +1,14 @@
 import { z } from "zod";
 import { tool, createSdkMcpServer } from "@anthropic-ai/claude-agent-sdk";
-import { getSocket, store } from "./client";
+import { getSocket, isConnected, store } from "./client";
 import logger from "../logger";
 
 const log = logger.child({ module: "tools" });
+
+const WA_UNAVAILABLE = {
+  content: [{ type: "text" as const, text: "WhatsApp is not connected. Delete the auth_info_baileys/ folder and restart the bot to re-pair via QR code." }],
+  isError: true,
+};
 
 // ── Tool definitions ────────────────────────────────────────────────────────
 
@@ -18,6 +23,7 @@ const listChats = tool(
   },
   async ({ limit }) => {
     log.info({ tool: "list_whatsapp_chats", limit }, "Tool invoked");
+    if (!isConnected()) return WA_UNAVAILABLE;
     const chats = store.getRecentChats(limit ?? 20);
     if (chats.length === 0) {
       log.debug({ tool: "list_whatsapp_chats", resultCount: 0 }, "Tool completed");
@@ -62,6 +68,7 @@ const readMessages = tool(
   },
   async ({ contact, limit }) => {
     log.info({ tool: "read_whatsapp_messages", contact }, "Tool invoked");
+    if (!isConnected()) return WA_UNAVAILABLE;
     const jid = store.resolveJid(contact);
     if (!jid) {
       log.warn({ tool: "read_whatsapp_messages", contact }, "Contact not found");
@@ -119,6 +126,7 @@ const sendMessage = tool(
   },
   async ({ contact, message }) => {
     log.info({ tool: "send_whatsapp_message", contact }, "Tool invoked");
+    if (!isConnected()) return WA_UNAVAILABLE;
     const jid = store.resolveJid(contact);
     if (!jid) {
       log.warn({ tool: "send_whatsapp_message", contact }, "Contact not found");
@@ -132,7 +140,7 @@ const sendMessage = tool(
       };
     }
 
-    const sock = getSocket();
+    const sock = getSocket()!;
     await sock.sendMessage(jid, { text: message });
     log.info({ tool: "send_whatsapp_message", jid }, "Message sent via WhatsApp");
 
@@ -156,6 +164,7 @@ const searchContacts = tool(
   },
   async ({ query }) => {
     log.info({ tool: "search_whatsapp_contacts", query }, "Tool invoked");
+    if (!isConnected()) return WA_UNAVAILABLE;
     const results = store.searchContacts(query);
     if (results.length === 0) {
       log.warn({ tool: "search_whatsapp_contacts", query }, "Contact not found");

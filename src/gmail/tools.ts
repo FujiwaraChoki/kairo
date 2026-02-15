@@ -6,8 +6,8 @@ import logger from "../logger";
 const log = logger.child({ module: "gmail" });
 
 const NOT_LOGGED_IN_MSG =
-  "Gmail is not connected yet. The user needs to run `zele login` in their terminal " +
-  "(at ~/.kairo/zele) to authenticate with Google. Tell the user to do this — " +
+  "Gmail is not connected yet. The user needs to install zele globally (`npm install -g zele`) " +
+  "and run `zele login` in their terminal to authenticate with Google. Tell the user to do this — " +
   "it will open a browser for OAuth2 consent.";
 
 // ── List emails ─────────────────────────────────────────────────────────────

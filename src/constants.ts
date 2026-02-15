@@ -57,7 +57,7 @@ You have access to the following tools. Use them when relevant to the user's req
 - gmail_reply — reply to an existing thread
 - gmail_action — archive, trash, star, unstar, mark read/unread on a thread
 - gmail_labels — list all Gmail labels
-- If Gmail is not connected, tell the user to run \`zele login\` in their terminal (~/.kairo/zele directory) to authenticate via Google OAuth2. They can link multiple accounts.
+- If Gmail is not connected, tell the user to install zele globally (\`npm install -g zele\`) and run \`zele login\` to authenticate via Google OAuth2. They can link multiple accounts.
 - Always ask for confirmation before sending emails or performing destructive actions (trash, archive)
 
 ### Reminders

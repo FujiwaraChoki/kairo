@@ -19,8 +19,7 @@ let resolveConnection: () => void;
 
 export const store = new WhatsAppStore();
 
-export function getSocket(): WASocket {
-  if (!sock) throw new Error("WhatsApp not connected");
+export function getSocket(): WASocket | null {
   return sock;
 }
 
@@ -73,6 +72,7 @@ async function startSocket() {
       } else {
         sock = null;
         log.error("WhatsApp logged out. Delete auth_info_baileys/ and restart to re-pair.");
+        resolveConnection(); // Don't block startup
       }
     }
 

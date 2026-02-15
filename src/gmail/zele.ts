@@ -1,37 +1,20 @@
-import { execSync, execFileSync } from "node:child_process";
-import { existsSync, mkdirSync } from "node:fs";
-import { join } from "node:path";
-import { homedir } from "node:os";
+import { execFileSync, execSync } from "node:child_process";
 import logger from "../logger";
 
 const log = logger.child({ module: "zele" });
 
-const ZELE_DIR = join(homedir(), ".kairo", "zele");
-const ZELE_BIN = join(ZELE_DIR, "node_modules", ".bin", "zele");
-
 /**
- * Ensure zele is installed at ~/.kairo/zele.
- * Installs it via npm if not present.
+ * Ensure zele is installed globally.
+ * Returns the path to the zele binary.
  */
 export function ensureZele(): string {
-  if (existsSync(ZELE_BIN)) return ZELE_BIN;
-
-  log.info("zele not found, installing to ~/.kairo/zele ...");
-  mkdirSync(ZELE_DIR, { recursive: true });
-
-  execSync("npm init -y", { cwd: ZELE_DIR, stdio: "ignore" });
-  execSync("npm install zele@latest", {
-    cwd: ZELE_DIR,
-    stdio: "inherit",
-    timeout: 120_000,
-  });
-
-  if (!existsSync(ZELE_BIN)) {
-    throw new Error("zele installation failed — binary not found after npm install");
+  try {
+    return execSync("which zele", { encoding: "utf-8" }).trim();
+  } catch {
+    throw new Error(
+      "zele is not installed. Run: npm install -g zele"
+    );
   }
-
-  log.info("zele installed successfully");
-  return ZELE_BIN;
 }
 
 /**
@@ -42,7 +25,7 @@ export function runZele(args: string[], timeoutMs = 30_000): string {
   log.debug({ args }, "Running zele command");
 
   try {
-    const output = execFileSync(bin, args, {
+    const output = execFileSync("node", [bin, ...args], {
       encoding: "utf-8",
       timeout: timeoutMs,
       env: { ...process.env, FORCE_COLOR: "0" },
