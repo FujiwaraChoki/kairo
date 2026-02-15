@@ -8,6 +8,14 @@
   An AI-powered Telegram bot built on the Claude Agent SDK — with integrations for WhatsApp, Gmail, Spotify, Notion, and more.
 </p>
 
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/fujiwarachoki/kairo?color=blue" alt="License" /></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D20.6-brightgreen" alt="Node.js" />
+  <img src="https://img.shields.io/badge/TypeScript-strict-3178c6?logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/pnpm-%3E%3D9-f69220?logo=pnpm&logoColor=white" alt="pnpm" />
+  <img src="https://img.shields.io/badge/Claude-Agent%20SDK-d97706" alt="Claude Agent SDK" />
+</p>
+
 ---
 
 Kairo isn't a generic chatbot. It has personality (defined in [`SOUL.md`](SOUL.md)), manages long-running conversations with automatic context compaction, and connects to your real tools through MCP servers.
@@ -27,32 +35,23 @@ Kairo isn't a generic chatbot. It has personality (defined in [`SOUL.md`](SOUL.m
 - **Info** — weather, news, dictionary, translation, Wikipedia
 - **Customizable personality** — swap out `SOUL.md` to change the bot's entire character
 
-## Prerequisites
-
-- **Node.js** >= 20.6 (for `--env-file` support)
-- **pnpm** — `npm install -g pnpm`
-- A **Telegram bot token** from [@BotFather](https://t.me/BotFather)
-- An **Anthropic API key** (set as `ANTHROPIC_API_KEY`)
-
-## Setup
+## Quick Start
 
 ```bash
-# Clone the repo
-git clone https://github.com/YOUR_USERNAME/kairo.git
+git clone https://github.com/fujiwarachoki/kairo.git
 cd kairo
+./install.sh
+```
 
-# Install dependencies
+The install script walks you through everything — dependencies, API keys, and optional integrations.
+
+## Manual Setup
+
+```bash
 pnpm install
-
-# Configure environment
 cp .env.example .env
 # Edit .env with your tokens
-
-# Run
 pnpm start
-
-# Run in dev mode (auto-restart on changes)
-pnpm run dev
 ```
 
 ## Configuration
