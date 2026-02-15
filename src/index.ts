@@ -18,11 +18,16 @@ import { notionMcpServer, NOTION_TOOL_NAMES } from "./notion/tools";
 import { ensureZele } from "./gmail/zele";
 import { startReminderScheduler } from "./productivity/scheduler";
 import { setTelegramApi } from "./telegram";
-import { BOT_TOKEN, BOT_NAME, ENABLE_GROUPS, EXA_API_KEY, SYSTEM_PROMPT, MAX_CONTEXT_TOKENS } from "./constants";
+import { chatContext } from "./context-store";
+import { hasPendingConfirmation, resolveConfirmation, CONFIRMABLE_TOOLS } from "./confirmation";
+import { BOT_TOKEN, BOT_NAME, ENABLE_GROUPS, EXA_API_KEY, SYSTEM_PROMPT, MAX_CONTEXT_TOKENS, OWNER_CHAT_ID } from "./constants";
 import { initDatabase, ConversationStore, ContextBuilder } from "./conversation";
 import logger from "./logger";
 
 const log = logger.child({ module: "telegram" });
+
+// Allow SDK to wait for inline keyboard confirmations (default timeout is too short)
+process.env.CLAUDE_CODE_STREAM_CLOSE_TIMEOUT = "180000";
 
 if (!BOT_TOKEN) {
   log.fatal("Missing BOT_TOKEN — get one from @BotFather on Telegram");
@@ -296,6 +301,9 @@ async function handleUserMessage(
 
   const sentToolLines = new Set<string>();
   const onToolCall = async (tool: ToolAction) => {
+    // Confirmable tools show an inline keyboard instead of emoji summary
+    const mcpName = tool.name;
+    if (CONFIRMABLE_TOOLS.has(mcpName)) return;
     const line = formatToolLine(tool);
     if (sentToolLines.has(line)) return;
     sentToolLines.add(line);
@@ -306,7 +314,7 @@ async function handleUserMessage(
   let parts: string[] = [];
   let tools: ToolAction[] = [];
   await typingFn(async () => {
-    ({ parts, tools } = await askClaude(prompt, onToolCall));
+    ({ parts, tools } = await chatContext.run(chatId, () => askClaude(prompt, onToolCall)));
   });
 
   if (parts.length > 0) {
@@ -458,9 +466,31 @@ bot.command("ping", (ctx) => {
   ctx.reply("pong");
 });
 
+// ── Inline keyboard confirmation handler ─────────────────────────────────────
+
+bot.on("callback_query", async (ctx) => {
+  const data = (ctx.callbackQuery as any).data as string | undefined;
+  if (!data?.startsWith("confirm:")) return;
+
+  const parts = data.split(":");
+  if (parts.length !== 3) return;
+
+  const [, id, choice] = parts;
+  const approved = choice === "yes";
+
+  const resolved = resolveConfirmation(id, approved);
+  if (resolved) {
+    await ctx.answerCbQuery(approved ? "Approved" : "Denied");
+  } else {
+    await ctx.answerCbQuery("Already handled or expired.");
+  }
+});
+
 // ── Photo handler (OCR) ─────────────────────────────────────────────────────
 
 bot.on(message("photo"), async (ctx) => {
+  if (OWNER_CHAT_ID && ctx.from.id !== OWNER_CHAT_ID) return;
+
   const chatId = ctx.chat.id;
   const senderName = ctx.from.first_name || ctx.from.username || "User";
   const caption = ctx.message.caption ?? "";
@@ -514,6 +544,9 @@ bot.on(message("photo"), async (ctx) => {
 // ── Message handler ──────────────────────────────────────────────────────────
 
 bot.on(message("text"), async (ctx) => {
+  // Only allow the owner to interact
+  if (OWNER_CHAT_ID && ctx.from.id !== OWNER_CHAT_ID) return;
+
   const chatType = ctx.chat.type;
   const isGroup = chatType === "group" || chatType === "supergroup";
 
@@ -535,6 +568,11 @@ bot.on(message("text"), async (ctx) => {
   const text = ctx.message.text.replace(/@\w+/g, "").trim();
 
   if (!text) return;
+
+  if (hasPendingConfirmation(chatId)) {
+    await sendPart(ctx, "⏳ Please respond to the pending confirmation buttons first.");
+    return;
+  }
 
   log.info({ chatId, sender: senderName, text }, "Incoming message");
 

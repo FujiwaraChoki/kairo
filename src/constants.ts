@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 export const BOT_TOKEN = process.env.BOT_TOKEN;
 export const BOT_NAME = process.env.BOT_NAME || "Kairo";
 export const ENABLE_GROUPS = process.env.ENABLE_GROUPS === "true";
+export const OWNER_CHAT_ID = process.env.OWNER_CHAT_ID ? parseInt(process.env.OWNER_CHAT_ID, 10) : null;
 export const EXA_API_KEY = process.env.EXA_API_KEY;
 export const MAX_CONTEXT_TOKENS = parseInt(process.env.MAX_CONTEXT_TOKENS || "16000", 10);
 export const PROTECTED_MESSAGES = parseInt(process.env.PROTECTED_MESSAGES || "6", 10);
