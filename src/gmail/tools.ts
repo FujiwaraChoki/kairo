@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { tool, createSdkMcpServer } from "@anthropic-ai/claude-agent-sdk";
 import { runZele, isLoggedIn } from "./zele";
+import { requestConfirmation } from "../confirmation";
 import logger from "../logger";
 
 const log = logger.child({ module: "gmail" });
@@ -162,6 +163,14 @@ const sendEmail = tool(
       return { content: [{ type: "text" as const, text: NOT_LOGGED_IN_MSG }] };
     }
 
+    const approved = await requestConfirmation({
+      tool: "Send email",
+      description: `To: ${to}\nSubject: "${subject}"`,
+    });
+    if (!approved) {
+      return { content: [{ type: "text" as const, text: "Email cancelled by user." }] };
+    }
+
     try {
       const args = ["mail", "send", "--to", to, "--subject", subject, "--body", body];
       if (cc) args.push("--cc", cc);
@@ -197,6 +206,14 @@ const replyEmail = tool(
 
     if (!isLoggedIn()) {
       return { content: [{ type: "text" as const, text: NOT_LOGGED_IN_MSG }] };
+    }
+
+    const approved = await requestConfirmation({
+      tool: "Reply to email",
+      description: `Thread: ${threadId}\nBody: "${body.substring(0, 100)}${body.length > 100 ? "…" : ""}"`,
+    });
+    if (!approved) {
+      return { content: [{ type: "text" as const, text: "Reply cancelled by user." }] };
     }
 
     try {
@@ -235,6 +252,16 @@ const emailAction = tool(
 
     if (!isLoggedIn()) {
       return { content: [{ type: "text" as const, text: NOT_LOGGED_IN_MSG }] };
+    }
+
+    if (action === "trash") {
+      const approved = await requestConfirmation({
+        tool: "Trash email",
+        description: `Thread: ${threadId}`,
+      });
+      if (!approved) {
+        return { content: [{ type: "text" as const, text: "Trash cancelled by user." }] };
+      }
     }
 
     try {

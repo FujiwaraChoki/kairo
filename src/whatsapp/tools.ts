@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { tool, createSdkMcpServer } from "@anthropic-ai/claude-agent-sdk";
 import { getSocket, isConnected, store } from "./client";
+import { requestConfirmation } from "../confirmation";
 import logger from "../logger";
 
 const log = logger.child({ module: "tools" });
@@ -140,11 +141,21 @@ const sendMessage = tool(
       };
     }
 
+    const chatName = store.contacts.get(jid)?.name || store.chats.get(jid)?.name || jid;
+    const approved = await requestConfirmation({
+      tool: "Send WhatsApp message",
+      description: `To: ${chatName}\nMessage: "${message.substring(0, 100)}${message.length > 100 ? "…" : ""}"`,
+    });
+    if (!approved) {
+      return {
+        content: [{ type: "text" as const, text: "WhatsApp message cancelled by user." }],
+      };
+    }
+
     const sock = getSocket()!;
     await sock.sendMessage(jid, { text: message });
     log.info({ tool: "send_whatsapp_message", jid }, "Message sent via WhatsApp");
 
-    const chatName = store.contacts.get(jid)?.name || store.chats.get(jid)?.name || jid;
     return {
       content: [
         {

@@ -93,6 +93,12 @@ function formatToolLine(t: ToolAction): string {
       return `📖 Read ${t.input.file_path ?? "file"}`;
     case "Write":
       return `✏️ Wrote ${t.input.file_path ?? "file"}`;
+    case "Edit":
+      return `✏️ Edited ${t.input.file_path ?? "file"}`;
+    case "Glob":
+      return `🔎 Found files matching "${t.input.pattern ?? "*"}"`;
+    case "Grep":
+      return `🔎 Searched for "${t.input.pattern ?? ""}"`;
     case "Bash": {
       const cmd = t.input.command ?? "";
       const short = cmd.length > 40 ? cmd.slice(0, 40) + "…" : cmd;
@@ -221,7 +227,7 @@ async function askClaude(
       cwd: process.cwd(),
       settingSources: ["project"],
       allowedTools: [
-        "Skill", "Read", "Write", "Bash",
+        "Skill", "Read", "Write", "Edit", "Bash", "Glob", "Grep",
         "mcp__search__web_search",
         ...WHATSAPP_TOOL_NAMES,
         ...PRODUCTIVITY_TOOL_NAMES,

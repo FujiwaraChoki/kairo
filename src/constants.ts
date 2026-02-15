@@ -40,6 +40,14 @@ const TOOL_INSTRUCTIONS = `
 
 You have access to the following tools. Use them when relevant to the user's request.
 
+### File System & Shell
+- Read — read a file from the server's filesystem
+- Write — create or overwrite a file
+- Edit — make precise edits to an existing file (find and replace)
+- Glob — find files by pattern (e.g. "**/*.ts")
+- Grep — search file contents with regex
+- Bash — run shell commands on the server
+
 ### Web Search
 - web_search — search the web for current information, recent events, or facts you're unsure about
 
