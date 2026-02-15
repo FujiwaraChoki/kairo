@@ -1,19 +1,35 @@
 import { execFileSync, execSync } from "node:child_process";
+import { dirname, resolve } from "node:path";
+import { readFileSync } from "node:fs";
 import logger from "../logger";
 
 const log = logger.child({ module: "zele" });
 
+let cachedEntry: string | null = null;
+
 /**
  * Ensure zele is installed globally.
- * Returns the path to the zele binary.
+ * Returns the path to the actual JS entry point (not the shell wrapper).
  */
 export function ensureZele(): string {
+  if (cachedEntry) return cachedEntry;
+
   try {
-    return execSync("which zele", { encoding: "utf-8" }).trim();
-  } catch {
-    throw new Error(
-      "zele is not installed. Run: npm install -g zele"
-    );
+    // which zele -> /usr/lib/node_modules/zele/bin/zele (shell wrapper)
+    const binPath = execSync("which zele", { encoding: "utf-8" }).trim();
+    // Follow symlinks to the real file, then find package.json
+    const realBin = execSync(`realpath "${binPath}"`, { encoding: "utf-8" }).trim();
+    const pkgDir = resolve(dirname(realBin), "..");
+    const pkg = JSON.parse(readFileSync(resolve(pkgDir, "package.json"), "utf-8"));
+    const binField = typeof pkg.bin === "string" ? pkg.bin : pkg.bin?.zele;
+
+    if (!binField) throw new Error("Cannot find zele bin entry in package.json");
+
+    cachedEntry = resolve(pkgDir, binField);
+    return cachedEntry;
+  } catch (err: any) {
+    if (err.message?.includes("Cannot find zele")) throw err;
+    throw new Error("zele is not installed. Run: npm install -g zele");
   }
 }
 
