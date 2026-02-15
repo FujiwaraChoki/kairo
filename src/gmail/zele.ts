@@ -23,11 +23,11 @@ export function ensureZele(): string {
     }).trim();
     const pkgDir = resolve(globalRoot, "zele");
     const pkg = JSON.parse(readFileSync(resolve(pkgDir, "package.json"), "utf-8"));
-    const binField = typeof pkg.bin === "string" ? pkg.bin : pkg.bin?.zele;
 
-    if (!binField) throw new Error("Cannot find zele bin entry in package.json");
+    // Use `main` (the JS entry), not `bin` (which is a shell wrapper that prefers Bun)
+    if (!pkg.main) throw new Error("Cannot find zele main entry in package.json");
 
-    cachedEntry = resolve(pkgDir, binField);
+    cachedEntry = resolve(pkgDir, pkg.main);
     return cachedEntry;
   } catch {
     throw new Error(
